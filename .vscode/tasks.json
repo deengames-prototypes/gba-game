@@ -11,6 +11,9 @@
             },
             "osx": {
                 "command": "killall mGBA"
+            },
+            "linux": {
+                "command": "killall mGBA"
             }
         },
         {
@@ -46,7 +49,7 @@
                 "args": ["-g", "${workspaceFolder}/${workspaceFolderBasename}.gba"]
             },
             "linux":{
-                "command": "/usr/bin/mgba-qt",
+                "command": "/usr/bin/mgba",
                 "args": ["-g", "${workspaceFolder}/${workspaceFolderBasename}.gba"]
             },
             "presentation": {
