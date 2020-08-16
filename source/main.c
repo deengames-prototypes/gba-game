@@ -1,4 +1,6 @@
 #include "Intellisense.h" //capitalize headers?
+#include "gba.h"
+#include "gba_video.h"
 
 //ARM defines
 typedef unsigned char uint8;
@@ -17,7 +19,6 @@ typedef unsigned int uint32;
 #define M3_SCREEN_WIDTH  ( 240 )
 #define M3_SCREEN_HEIGHT ( 160 )
 typedef uint16 color; // gba apparently uses rgb15
-const uint16 MODE_3 = 0x0403;
 
 //static inline function vs macro functions
 static inline uint16 m3_get_color(uint32 r, uint32 g, uint32 b)
@@ -27,7 +28,7 @@ static inline void _plot_pixel(uint8 _x, uint8 _y, uint16 _color)
 
 int main( void )
 {
-    LCD_CTRL_REG = &MODE_3; // set to mode 3
+    SetMode(MODE_3); // set to mode 3
     uint8 x=0, y=0, t=0;
     for ( x = 0; x < M3_SCREEN_WIDTH; ++x ) {
         for ( y = 0; y < M3_SCREEN_HEIGHT; ++y ) {
