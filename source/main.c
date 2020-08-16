@@ -23,9 +23,7 @@ const uint16 MODE_3 = 0x0403;
 static inline uint16 m3_get_color(uint32 r, uint32 g, uint32 b)
 { return (uint16)( r | ( g << 5 ) | ( b << 10 ) ) ; }
 static inline void _plot_pixel(uint8 _x, uint8 _y, uint16 _color)
-{ 
-	(vmem)[ ((_y)*M3_SCREEN_WIDTH + _x) ] = &(_color); 
-}
+{ (vmem)[(uint16 *) ((_y)*M3_SCREEN_WIDTH + _x)] = &(_color); }
 
 int main( void )
 {
