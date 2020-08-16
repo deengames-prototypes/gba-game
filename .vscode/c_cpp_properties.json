@@ -8,7 +8,7 @@
                 "${workspaceFolder}",
                 "${workspaceFolder}/include",
                 "/opt/devkitPro/devkitARM/arm-none-eabi/include",
-                "/opt/devkitPro/devkitARM/lib/gcc/arm-none-eabi/8.1.0/include"
+                "/opt/devkitPro/devkitARM/lib/gcc/arm-none-eabi/10.2.0/include"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
@@ -19,7 +19,7 @@
                     "${workspaceFolder}",
                     "${workspaceFolder}/include",
                     "/opt/devkitPro/devkitARM/arm-none-eabi/include",
-                    "/opt/devkitPro/devkitARM/lib/gcc/arm-none-eabi/8.1.0/include"
+                    "/opt/devkitPro/devkitARM/lib/gcc/arm-none-eabi/10.2.0/include"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
@@ -59,8 +59,8 @@
             "includePath": [
                 "${workspaceFolder}",
                 "${workspaceFolder}/include",
-                "E:/devkitPro/devkitARM/arm-none-eabi/include",
-                "E:/devkitPro/devkitARM/lib/gcc/arm-none-eabi/8.1.0/include"
+                "C:/devkitPro/devkitARM/arm-none-eabi/include",
+                "C:/devkitPro/devkitARM/lib/gcc/arm-none-eabi/10.2.0/include"
             ],
             "defines": [
                 "_DEBUG",
@@ -74,8 +74,9 @@
                 "path": [
                     "${workspaceFolder}",
                     "${workspaceFolder}/include",
-                    "E:/devkitPro/devkitARM/arm-none-eabi/include",
-                    "E:/devkitPro/devkitARM/lib/gcc/arm-none-eabi/8.1.0/include"
+                    "C:/devkitPro/libgba/include",
+                    "C:/devkitPro/devkitARM/arm-none-eabi/include",
+                    "C:/devkitPro/devkitARM/lib/gcc/arm-none-eabi/10.2.0/include"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
