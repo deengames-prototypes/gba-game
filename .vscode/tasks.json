@@ -45,6 +45,10 @@
                 "command": "/Users/jamies/mGBA/mGBA.app/Contents/MacOS/mGBA",
                 "args": ["-g", "${workspaceFolder}/${workspaceFolderBasename}.gba"]
             },
+            "linux":{
+                "command": "/usr/bin/mgba-qt",
+                "args": ["-g", "${workspaceFolder}/${workspaceFolderBasename}.gba"]
+            },
             "presentation": {
                 "clear": true,
                 "reveal": "always",
