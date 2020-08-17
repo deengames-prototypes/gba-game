@@ -37,7 +37,7 @@
                     }]
             },
             "linux":{
-                "miDebuggerPath": "/opt/devkitPro/devkitARM/bin/arm-none-eabi-gdb",
+                "miDebuggerPath": "/opt/devkitpro/devkitARM/bin/arm-none-eabi-gdb",
                 "setupCommands": [
                     {
                     "description": "Enable pretty-printing for gdb",
