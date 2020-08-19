@@ -13,7 +13,7 @@
                 "command": "killall mGBA"
             },
             "linux": {
-                "command": "killall mGBA"
+                "command": "pkill mgba"
             }
         },
         {
@@ -40,37 +40,51 @@
             "label": "gdb-debug",
             "type": "shell",
             "dependsOn": ["make debug"],
-            "isBackground": false,
+            "isBackground": true,
             "windows": {
-                "command": "C:/mGBA/mGBA.exe -g ${workspaceFolder}/${workspaceFolderBasename}.gba;sleep 5;echo debuggerReady"
+                "command": "C:/mGBA/mGBA.exe -g ${workspaceFolder}/${workspaceFolderBasename}.elf;sleep 5;echo debuggerReady"
             },
             "osx":{
                 "command": "/Users/jamies/mGBA/mGBA.app/Contents/MacOS/mGBA",
-                "args": ["-g", "${workspaceFolder}/${workspaceFolderBasename}.gba"]
+                "args": ["-g", "${workspaceFolder}/${workspaceFolderBasename}.elf"]
             },
             "linux":{
                 "command": "/usr/bin/mgba",
-                "args": ["-g", "${workspaceFolder}/${workspaceFolderBasename}.gba"]
+                "args": ["-g", "${workspaceFolder}/${workspaceFolderBasename}.elf"]
             },
             "presentation": {
                 "clear": true,
                 "reveal": "always",
                 "panel": "new"
             },
-            "command": "debuggerReady",
             "problemMatcher": {
+                "pattern": [
+                    {
+                      "regexp": ".",
+                      "file": 1,
+                      "location": 2,
+                      "message": 3
+                    }
+                  ],
                 "background": {
                     "activeOnStart": true,
-                    "beginsPattern": "^.*debuggerReady.*$",
-                    "endsPattern": "^.*debuggerReady.*$"
-                },
+                    "beginsPattern": ".",
+                    "endsPattern": "Debugger",
+                }
             }
         },
         {
             "label": "run",
             "type": "shell",
             "isBackground": true,
-            "command": "C:/NO$GBADebugger/NO$GBA.exe  ${workspaceFolder}/${workspaceFolderBasename}.elf",
+            "windows": {
+                "command": "C:/NO$GBADebugger/NO$GBA.exe",
+                "args": ["${workspaceFolder}/${workspaceFolderBasename}.elf"]
+            },
+            "linux":{
+                "command": "/usr/bin/mgba",
+                "args": ["${workspaceFolder}/${workspaceFolderBasename}.elf"]
+            },
             "problemMatcher": []
         }
     ]
