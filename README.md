@@ -7,6 +7,8 @@ A 'simple' Game Boy Advance development setup using Visual Studio Code and relyi
 To get this project to compile there are some dependancies that need to be taken into consideration.
 Obviously you will need a GBA emulator set up on your sytem, I tend to flip flop between using NO$GBA or lately mGBA. At the minute I use mGBA as it hooks up nicely with gdb debugging. Which I've configured this VS Code set up to make use of, so get a copy of [mGBA](https://mgba.io/downloads.html) (I'm using Version 0.6.2 as version after this at the time of release weren't working correctly with GDB).
 
+Uses a precompiled GBA-Sprite-Engine library. [Source here.](https://github.com/wgroeneveld/gba-sprite-engine)
+
 ### devkitPro
 
 You will need to have devkitPro with devkitARM installed, this can easily be carried out by heading over to the [devkitPro Installer page](https://github.com/devkitPro/installer/releases) and getting the most current version for your development platform.
