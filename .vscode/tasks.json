@@ -42,7 +42,7 @@
             "dependsOn": ["make debug"],
             "isBackground": true,
             "windows": {
-                "command": "C:/mGBA/mGBA.exe -g ${workspaceFolder}/${workspaceFolderBasename}.elf;sleep 5;echo debuggerReady"
+                "command": "C:/Progra~1/mGBA/mGBA.exe -g ${workspaceFolder}/${workspaceFolderBasename}.elf;sleep 5;echo debuggerReady"
             },
             "osx":{
                 "command": "/Users/jamies/mGBA/mGBA.app/Contents/MacOS/mGBA",
