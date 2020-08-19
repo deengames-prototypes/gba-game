@@ -52,11 +52,6 @@
                 "command": "/usr/bin/mgba",
                 "args": ["-g", "${workspaceFolder}/${workspaceFolderBasename}.elf"]
             },
-            "presentation": {
-                "clear": true,
-                "reveal": "always",
-                "panel": "new"
-            },
             "problemMatcher": {
                 "pattern": [
                     {
