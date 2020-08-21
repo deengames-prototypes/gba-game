@@ -1,8 +1,11 @@
 #include <libgba-sprite-engine/sprites/sprite_builder.h>
 #include <libgba-sprite-engine/background/text_stream.h>
 
+// Images
+#include "images/lama.h"
+#include "images/player.h"
+
 #include "ff.h"
-#include "lama.h"
 #include "main_scene.h"
 
 std::vector<Background *> MainScene::backgrounds() {
@@ -20,10 +23,8 @@ void MainScene::load() {
     SpriteBuilder<Sprite> builder;
 
     lama = builder
-            .withData(lamaTiles, sizeof(lamaTiles))
-            // TODO: turn into 16x16 flat colour
-            .withSize(SIZE_32_32)
-            .withAnimated(1, 1)
+            .withData(playerTiles, sizeof(playerTiles))
+            .withSize(SIZE_16_16)
             .withLocation(0, 0)
             .buildPtr();
 }
