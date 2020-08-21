@@ -64,7 +64,7 @@
                 "background": {
                     "activeOnStart": true,
                     "beginsPattern": ".",
-                    "endsPattern": "Debugger",
+                    "endsPattern": "Debugger"
                 }
             }
         },
