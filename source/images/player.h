@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int playerTiles[64] __attribute__((aligned(4)))=
+const unsigned int playerTiles[64] __attribute__((aligned(4))) __attribute__((visibility("hidden")))=
 {
 	0x01010101,0x01010101,0x01010101,0x01010101,0x01000101,0x01010001,0x01000101,0x01010001,
 	0x00000101,0x01010000,0x00000101,0x01010000,0x01010101,0x01010101,0x01010101,0x01010101,
