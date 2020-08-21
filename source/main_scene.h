@@ -19,7 +19,8 @@ private:
     // TODO: extract out a class/lambda something like justPressed(key, lambda)
     bool justMoved = false;
 
-    std::unique_ptr<Sprite> lama;
+    std::unique_ptr<Sprite> player;
+    std::unique_ptr<Sprite> wall;
 
     // TODO: move this into a "model" class. With C++ tests?
     int playerX;

@@ -2,8 +2,8 @@
 #include <libgba-sprite-engine/background/text_stream.h>
 
 // Images
-#include "images/lama.h"
 #include "images/player.h"
+#include "images/wall.h"
 
 #include "ff.h"
 #include "main_scene.h"
@@ -13,7 +13,7 @@ std::vector<Background *> MainScene::backgrounds() {
 }
 
 std::vector<Sprite *> MainScene::sprites() {
-    return {  lama.get() };
+    return {  player.get(), wall.get() };
 }
 
 void MainScene::load() {
@@ -22,11 +22,13 @@ void MainScene::load() {
 
     SpriteBuilder<Sprite> builder;
 
-    lama = builder
+    player = builder
             .withData(playerTiles, sizeof(playerTiles))
             .withSize(SIZE_16_16)
-            .withLocation(0, 0)
+            .withLocation(32, 32)
             .buildPtr();
+
+    wall = builder.withData(wallTiles, sizeof(wallTiles)).withSize(SIZE_16_16).withLocation(0, 0).buildPtr();
 }
 
 void MainScene::tick(u16 keys) {
@@ -70,6 +72,6 @@ void MainScene::tick(u16 keys) {
             justMoved = true;
         }
 
-        lama->moveTo(playerX * TILE_SIZE, playerY * TILE_SIZE);
+        player->moveTo(playerX * TILE_SIZE, playerY * TILE_SIZE);
     }
 }
