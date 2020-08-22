@@ -64,46 +64,64 @@ std::unique_ptr<Sprite> MainScene::makeWallAt(int x, int y)
 }
 
 void MainScene::tick(u16 keys) {
-    std::string keysMessage = std::string("Keys: ") + std::to_string(keys);
-    TextStream::instance().setText(keysMessage, 0, 0);
-
-    if (justMoved && keys == 0)
+    if (keys == 0)
     {
         // Nothing pressed ...
         justMoved = false;
+        return;
     }
+
+    int targetX = playerX;
+    int targetY = playerY;
 
     if (!justMoved)
     {
         if ((keys & UP_ARROW) == UP_ARROW)
         {
-            playerY -= 1;
-            if (playerY < 0)
+            targetY -= 1;
+            if (targetY < 0)
             {
-                playerY = TILES_HIGH - 1;
+                targetY = TILES_HIGH - 1;
             }
-            justMoved = true;
         }
         else if ((keys & DOWN_ARROW) == DOWN_ARROW)
         {
-            playerY = (playerY + 1) % TILES_HIGH;
-            justMoved = true;
+            targetY = (targetY + 1) % TILES_HIGH;
         }
         else if ((keys & LEFT_ARROW) == LEFT_ARROW)
         {
-            playerX -= 1;
-            if (playerX < 0)
+            targetX -= 1;
+            if (targetX < 0)
             {
-                playerX = TILES_WIDE - 1;
+                targetX = TILES_WIDE - 1;
             }
-            justMoved = true;
         }
         else if ((keys & RIGHT_ARROW) == RIGHT_ARROW)
         {
-            playerX = (playerX + 1) % TILES_WIDE;
-            justMoved = true;
+            targetX = (targetX + 1) % TILES_WIDE;
         }
 
-        player->moveTo(playerX * TILE_SIZE, playerY * TILE_SIZE);
+        // TODO: store model info properly
+        bool canMove = true;
+        // for(const auto& wall : walls)
+        // {
+        //     if (player->collidesWith(*wall.get()))
+        //     {
+        //         TextStream::instance().setText(std::string("can't!!!"), 5, 5);
+        //         canMove = false;
+        //         break;
+        //     }
+        // }
+
+        canMove = (targetX != 0 && targetY != 0 && targetX != TILES_WIDE - 1 && targetY != TILES_HIGH - 1);
+        
+        if (canMove)
+        {
+            player->moveTo(targetX * TILE_SIZE, targetY * TILE_SIZE);
+            playerX = targetX;
+            playerY = targetY;
+            justMoved = true;
+            TextStream::instance().setText(std::string("moved!"), 5, 5);
+        }
     }
 }
