@@ -17,13 +17,18 @@
             }
         },
         {
+            "label": "convert audio",
+            "type": "shell",
+            "command": "python tools/convert_audio.py"
+        },
+        {
             "label": "convert images",
             "type": "shell",
-            "command": "python grit_images.py"
+            "command": "python tools/grit_images.py"
         },
         {
             "label": "make debug",
-            "dependsOn": ["convert images"],
+            "dependsOn": ["convert images", "convert audio"],
             "type": "process",
             "command": "make",
             "args": ["DEBUG=1"],
@@ -31,7 +36,7 @@
         },
         {
             "label": "make release",
-            "dependsOn": ["convert images"],
+            "dependsOn": ["convert images", "convert audio"],
             "type": "process",
             "command": "make",
             "args": ["DEBUG=0"],

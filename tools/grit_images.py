@@ -55,8 +55,12 @@ def grit_images(images_dir, output_dir):
 
 
 def main():
+    if not os.path.exists(IMAGES_DIR):
+        os.mkdir(IMAGES_DIR)
+
     # clear existing generated files, unexpected behaviour if files already exist
-    shutil.rmtree(OUTPUT_DIR)
+    if os.path.exists(OUTPUT_DIR):
+        shutil.rmtree(OUTPUT_DIR)
     os.mkdir(OUTPUT_DIR)
 
     grit_images(IMAGES_DIR, OUTPUT_DIR)
