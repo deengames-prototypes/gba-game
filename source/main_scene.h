@@ -2,6 +2,7 @@
 #define GBA_GAME_MAIN_SCENE_H
 
 #include <libgba-sprite-engine/scene.h>
+#include "models/map_grid.h"
 
 class MainScene : public Scene {
 private:
@@ -24,6 +25,7 @@ private:
     std::unique_ptr<Sprite> player;
     std::unique_ptr<Sprite> iceWall;
     std::vector<std::unique_ptr<Sprite>> walls;
+    std::unique_ptr<MapGrid> currentMap;
 
     // TODO: move this into a "model" class. With C++ tests?
     int playerX = 4;

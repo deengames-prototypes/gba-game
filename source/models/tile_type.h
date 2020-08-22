@@ -3,6 +3,7 @@
 
 enum class TileType
 {
+    Empty,
     Player,
     Wall
 };

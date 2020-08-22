@@ -8,7 +8,7 @@
 #include "images/palette.h"
 
 #include "models/map_grid.h"
-
+#include "models/map_grid.cpp"
 #include "main_scene.h"
 
 std::vector<Background *> MainScene::backgrounds() {
@@ -41,19 +41,20 @@ void MainScene::load() {
             .buildPtr();
     
     iceWall = builder.withData(world2Tiles, sizeof(world2Tiles))
-    .withSize(SIZE_16_16).withLocation(6 * TILE_SIZE, 4 * TILE_SIZE).buildPtr();
+        .withSize(SIZE_16_16).withLocation(6 * TILE_SIZE, 4 * TILE_SIZE).buildPtr();
 
-    for (int x = 0; x < TILES_WIDE; x++)
-    {
-        walls.push_back(makeWallAt(x, 0));
-        walls.push_back(makeWallAt(x, TILES_HIGH - 1));
-    }
+    currentMap = std::unique_ptr<MapGrid>(new MapGrid(TILES_WIDE, TILES_HIGH));
 
-    for (int y = 0; y < TILES_HIGH - 1; y++)
+    for (int y = 0; y < currentMap->_height; y++)
     {
-        // duplicates in corners :/
-        walls.push_back(makeWallAt(0, y));
-        walls.push_back(makeWallAt(TILES_WIDE - 1, y));
+        for (int x = 0; x < currentMap->_width; x++)
+        {
+            TileType data = currentMap->get(x, y);
+            if (data == TileType::Wall)
+            {
+                walls.push_back(makeWallAt(x, y));
+            }
+        }
     }
 }
 
@@ -107,20 +108,8 @@ void MainScene::tick(u16 keys) {
             targetX = (targetX + 1) % TILES_WIDE;
         }
 
-        // TODO: store model info properly
-        bool canMove = true;
-        // for(const auto& wall : walls)
-        // {
-        //     if (player->collidesWith(*wall.get()))
-        //     {
-        //         TextStream::instance().setText(std::string("can't!!!"), 5, 5);
-        //         canMove = false;
-        //         break;
-        //     }
-        // }
+        bool canMove = currentMap->get(targetX, targetY) == TileType::Empty;
 
-        canMove = (targetX != 0 && targetY != 0 && targetX != TILES_WIDE - 1 && targetY != TILES_HIGH - 1);
-        
         if (canMove)
         {
             player->moveTo(targetX * TILE_SIZE, targetY * TILE_SIZE);
