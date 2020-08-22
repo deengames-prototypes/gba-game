@@ -3,10 +3,8 @@ import sys
 import os
 import subprocess
 import shutil
-import re
 
 GRIT = "grit" if sys.platform == "linux" else "grit.exe"
-PALETTE = os.path.join(os.getcwd(), "images/palette.png")
 IMAGES = os.path.join(os.getcwd(), 'images')
 OUTPUT_DIR = os.path.join(os.getcwd(), 'source', 'images')
 
