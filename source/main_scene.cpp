@@ -8,7 +8,6 @@
 #include "images/palette.h"
 
 #include "models/map_grid.h"
-#include "models/map_grid.cpp"
 #include "main_scene.h"
 
 std::vector<Background *> MainScene::backgrounds() {
