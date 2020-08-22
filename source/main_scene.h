@@ -5,6 +5,8 @@
 
 class MainScene : public Scene {
 private:
+    std::unique_ptr<Sprite> makeWallAt(int x, int y);
+
     const int TILE_SIZE = 16;
     // TODO: move calculations somewhere for width/height/etc.
     const int TILES_WIDE = 15;
@@ -20,11 +22,11 @@ private:
     bool justMoved = false;
 
     std::unique_ptr<Sprite> player;
-    std::unique_ptr<Sprite> wall;
+    std::vector<std::unique_ptr<Sprite>> walls;
 
     // TODO: move this into a "model" class. With C++ tests?
-    int playerX;
-    int playerY;
+    int playerX = 4;
+    int playerY = 3;
 public:
     std::vector<Sprite *> sprites() override;
     std::vector<Background *> backgrounds() override;
