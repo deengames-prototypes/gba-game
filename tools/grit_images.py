@@ -6,7 +6,42 @@ import shutil
 
 GRIT = "grit.exe" if sys.platform == "win32" else "grit"
 IMAGES_DIR = os.path.join(os.getcwd(), 'images')
+PALETTE = os.path.join(IMAGES_DIR, "palette.png")
 OUTPUT_DIR = os.path.join(os.getcwd(), 'source', 'images')
+
+
+def move_data_to_header(item, output_dir):
+    # grit spits out a C file with the actual data, and a header file
+    # so we move the data to the header and delete the C file
+
+    filename = str(item.split('.')[0])
+    header = os.path.join(output_dir, filename + '.h')
+    src = os.path.join(output_dir, filename + '.c')
+
+    with open(src, 'r') as f:
+        # load the C file, strip comments, only keep definition with data
+        data = "".join(x for x in f.readlines() if not x.startswith("//"))
+
+    with open(header, 'r') as f:
+        header_lines = f.readlines()
+
+    result = ''
+    data_is_added = False
+
+    for line in header_lines:
+        # replace definition line with data, keep other lines
+        if line.startswith("extern"):
+            if not data_is_added:
+                result += data
+                data_is_added = True
+        else:
+            result += line
+
+    with open(header, 'w') as f:
+        f.write(result)
+
+    # done, delete C file
+    os.remove(src)
 
 
 def grit_images(images_dir, output_dir):
@@ -21,37 +56,11 @@ def grit_images(images_dir, output_dir):
 
         elif os.path.isfile(item_path) and item.endswith(".png"):
             # found an image, grit it
-            subprocess.call([GRIT, item_path, "-ftc", "-gB8"], cwd=output_dir)
+            # yes, the first argument is the palette
+            # no, I don't know how it works, but it does, so don't touch it
+            subprocess.call([GRIT, PALETTE, item_path, "-ftc", "-gB8", "-pS", "-Opalette"], cwd=output_dir)
 
-            # grit spits out a C file with the actual data, and a header file
-            # so we move the data to the header and delete the C file
-            filename = str(item.split('.')[0])
-            header = os.path.join(output_dir, filename + '.h')
-            src = os.path.join(output_dir, filename + '.c')
-
-            with open(src, 'r') as f:
-                # load the C file, strip comments, only keep definition with data
-                data = "".join(x for x in f.readlines() if not x.startswith("//"))
-
-            with open(header, 'r') as f:
-                header_lines = f.readlines()
-
-            result = ''
-            data_is_added = False
-            for line in header_lines:
-                # replace definition line with data, keep other lines
-                if line.startswith("extern"):
-                    if not data_is_added:
-                        result += data
-                        data_is_added = True
-                else:
-                    result += line
-
-            with open(header, 'w') as f:
-                f.write(result)
-
-            # done, delete C file
-            os.remove(src)
+            move_data_to_header(item, output_dir)
 
 
 def main():

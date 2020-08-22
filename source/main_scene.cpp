@@ -3,6 +3,7 @@
 
 // Images
 #include "images/world1.h"
+#include "images/palette.h"
 
 #include "main_scene.h"
 
@@ -23,7 +24,7 @@ std::vector<Sprite *> MainScene::sprites() {
 }
 
 void MainScene::load() {
-    foregroundPalette = std::unique_ptr<ForegroundPaletteManager>(new ForegroundPaletteManager(world1Pal, sizeof(world1Pal)));
+    foregroundPalette = std::unique_ptr<ForegroundPaletteManager>(new ForegroundPaletteManager(palettePal, sizeof(palettePal)));
     backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager());
 
     SpriteBuilder<Sprite> builder;
