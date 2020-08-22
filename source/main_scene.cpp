@@ -3,6 +3,7 @@
 
 // Images
 #include "images/world1.h"
+#include "images/player.h"
 #include "images/palette.h"
 
 #include "main_scene.h"
@@ -30,7 +31,7 @@ void MainScene::load() {
     SpriteBuilder<Sprite> builder;
 
     player = builder
-            .withData(world1Tiles, sizeof(world1Tiles))
+            .withData(playerTiles, sizeof(playerTiles))
             .withSize(SIZE_16_16)
             .withLocation(playerX * TILE_SIZE, playerY * TILE_SIZE)
             .buildPtr();
@@ -55,12 +56,9 @@ std::unique_ptr<Sprite> MainScene::makeWallAt(int x, int y)
     std::unique_ptr<Sprite> wall = builder
         .withData(world1Tiles, sizeof(world1Tiles))
         .withSize(SIZE_16_16)
-        .withAnimated(2, 3)
         .withLocation(x * TILE_SIZE, y * TILE_SIZE)
         .buildPtr();
 
-    wall->stopAnimating();
-    wall->animateToFrame(1);
     return wall;
 }
 

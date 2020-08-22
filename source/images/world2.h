@@ -1,0 +1,38 @@
+
+//{{BLOCK(world2)
+
+//======================================================================
+//
+//	world2, 16x16@8, 
+//	+ 4 tiles not compressed
+//	Total size: 256 = 256
+//
+//	Time-stamp: 2020-08-22, 23:51:48
+//	Exported by Cearn's GBA Image Transmogrifier, v0.8.16
+//	( http://www.coranac.com/projects/#grit )
+//
+//======================================================================
+
+#ifndef GRIT_WORLD2_H
+#define GRIT_WORLD2_H
+
+#define world2TilesLen 256
+
+
+
+const unsigned int world2Tiles[64] __attribute__((aligned(4))) __attribute__((visibility("hidden")))=
+{
+	0x1C1C1C1C,0x1C1C1C1C,0x1A1A1A1C,0x1A1A1A1A,0x1A1A1A1C,0x1A1A1A1C,0x1C1A1A1C,0x1A1A1A1A,
+	0x1A1C1A1C,0x1A1A1A1A,0x1A1A1A1C,0x1C1A1A1A,0x1A1A1A1C,0x1A1C1A1A,0x1A1A1A1C,0x1A1A1C1A,
+	0x1C1C1C1C,0x1C1C1C1C,0x1A1A1A1A,0x1C1A1A1A,0x1A1A1A1A,0x1C1A1A1A,0x1A1A1C1A,0x1C1A1A1A,
+	0x1A1A1A1C,0x1C1A1A1A,0x1A1A1A1A,0x1C1A1A1A,0x1A1A1A1A,0x1C1A1A1C,0x1C1A1A1A,0x1C1A1A1A,
+	0x1A1A1A1C,0x1A1A1A1C,0x1C1A1A1C,0x1A1A1A1A,0x1A1C1A1C,0x1A1A1A1A,0x1A1A1A1C,0x1A1A1A1A,
+	0x1A1A1A1C,0x1A1A1A1A,0x1A1A1A1C,0x1C1A1A1A,0x1A1A1A1C,0x1A1A1A1A,0x1C1C1C1C,0x1C1C1C1C,
+	0x1A1C1A1A,0x1C1A1A1A,0x1A1A1A1A,0x1C1A1A1A,0x1A1A1A1A,0x1C1A1A1A,0x1A1A1C1A,0x1C1A1A1A,
+	0x1A1A1A1C,0x1C1A1A1A,0x1A1A1A1A,0x1C1A1A1A,0x1A1A1A1A,0x1C1A1A1A,0x1C1C1C1C,0x1C1C1C1C,
+};
+
+
+#endif // GRIT_WORLD2_H
+
+//}}BLOCK(world2)
