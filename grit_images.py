@@ -4,7 +4,7 @@ import os
 import subprocess
 import shutil
 
-GRIT = "grit" if sys.platform == "linux" else "grit.exe"
+GRIT = "grit.exe" if sys.platform == "win32" else "grit"
 IMAGES = os.path.join(os.getcwd(), 'images')
 OUTPUT_DIR = os.path.join(os.getcwd(), 'source', 'images')
 
