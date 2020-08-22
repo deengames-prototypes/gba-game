@@ -22,6 +22,7 @@ private:
     bool justMoved = false;
 
     std::unique_ptr<Sprite> player;
+    std::unique_ptr<Sprite> iceWall;
     std::vector<std::unique_ptr<Sprite>> walls;
 
     // TODO: move this into a "model" class. With C++ tests?

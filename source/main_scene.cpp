@@ -3,6 +3,7 @@
 
 // Images
 #include "images/world1.h"
+#include "images/world2.h"
 #include "images/player.h"
 #include "images/palette.h"
 
@@ -16,6 +17,7 @@ std::vector<Sprite *> MainScene::sprites() {
     std::vector<Sprite *> toReturn;
     
     toReturn.push_back(player.get());
+    toReturn.push_back(iceWall.get());
     for (int i = 0; i < walls.size(); i++)
     {
         toReturn.push_back(walls.at(i).get());
@@ -35,6 +37,9 @@ void MainScene::load() {
             .withSize(SIZE_16_16)
             .withLocation(playerX * TILE_SIZE, playerY * TILE_SIZE)
             .buildPtr();
+    
+    iceWall = builder.withData(world2Tiles, sizeof(world2Tiles))
+    .withSize(SIZE_16_16).withLocation(6 * TILE_SIZE, 4 * TILE_SIZE).buildPtr();
 
     for (int x = 0; x < TILES_WIDE; x++)
     {
