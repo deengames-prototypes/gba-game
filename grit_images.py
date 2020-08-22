@@ -16,12 +16,6 @@ def main():
     shutil.rmtree(OUTPUT_DIR)
     os.mkdir(OUTPUT_DIR)
 
-    # generate palette.
-    # also generates tiles from palette, ignore them
-    # disabling tiles with -g! throws an error
-    #subprocess.call([GRIT, PALETTE, "-ftc", "-gB8"], cwd=OUTPUT_DIR)
-    #move_data_to_header("palette.png")
-
     for item in os.listdir(IMAGES):
         item_path = os.path.join(IMAGES, item)
         if os.path.isfile(item_path) and item.endswith(".png"):
