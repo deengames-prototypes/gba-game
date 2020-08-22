@@ -11,7 +11,7 @@
             "preLaunchTask": "gdb-debug", 
             "postDebugTask": "stop emulation",
             "serverLaunchTimeout": 10000,
-            "stopAtEntry": true,
+            "stopAtEntry": false,
             "program": "${workspaceFolder}/${workspaceFolderBasename}.elf",
             "MIMode": "gdb",
             "externalConsole": true,
