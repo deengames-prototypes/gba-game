@@ -62,7 +62,7 @@
             },
             "linux":{
                 "command": "/usr/bin/mgba",
-                "args": ["-g", "${workspaceFolder}/${workspaceFolderBasename}.elf"]
+                "args": ["-3", "-g", "${workspaceFolder}/${workspaceFolderBasename}.elf"]
             },
             "problemMatcher": {
                 "pattern": [
