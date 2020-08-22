@@ -41,6 +41,8 @@ def move_data_to_header(item, tmp_dir, output_dir):
             if not data_is_added:
                 result += data
                 data_is_added = True
+        elif "Time-stamp:" in line:
+            pass
         else:
             result += line
 
