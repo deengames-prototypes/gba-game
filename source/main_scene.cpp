@@ -10,6 +10,7 @@
 
 #include "models/entity.h"
 #include "models/map_grid.h"
+#include "consts.h"
 #include "main_scene.h"
 
 std::vector<Background *> MainScene::backgrounds() {

@@ -12,7 +12,6 @@ private:
     std::unique_ptr<Entity> makeMonsterAt(TileType monster, int x, int y);
     void onPlayerMoved();
 
-    const int TILE_SIZE = 16;
     // TODO: move calculations somewhere for width/height/etc.
     const int TILES_WIDE = 15;
     const int TILES_HIGH = 10;
