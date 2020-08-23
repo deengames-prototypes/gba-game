@@ -13,12 +13,6 @@ private:
     const int TILES_WIDE = 15;
     const int TILES_HIGH = 10;
 
-    // Direction bitflags
-    const u16 UP_ARROW = 64;
-    const u16 DOWN_ARROW = 128;
-    const u16 LEFT_ARROW = 32;
-    const u16 RIGHT_ARROW = 16;
-
     // TODO: extract out a class/lambda something like justPressed(key, lambda)
     bool justMoved = false;
 

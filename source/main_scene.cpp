@@ -1,5 +1,6 @@
 #include <libgba-sprite-engine/sprites/sprite_builder.h>
 #include <libgba-sprite-engine/background/text_stream.h>
+#include <libgba-sprite-engine/gba/tonc_memdef.h>
 
 // Images
 #include "images/world1.h"
@@ -82,7 +83,7 @@ void MainScene::tick(u16 keys) {
 
     if (!justMoved)
     {
-        if ((keys & UP_ARROW) == UP_ARROW)
+        if ((keys & KEY_UP) == KEY_UP)
         {
             targetY -= 1;
             if (targetY < 0)
@@ -90,11 +91,11 @@ void MainScene::tick(u16 keys) {
                 targetY = TILES_HIGH - 1;
             }
         }
-        else if ((keys & DOWN_ARROW) == DOWN_ARROW)
+        else if ((keys & KEY_DOWN) == KEY_DOWN)
         {
             targetY = (targetY + 1) % TILES_HIGH;
         }
-        else if ((keys & LEFT_ARROW) == LEFT_ARROW)
+        else if ((keys & KEY_LEFT) == KEY_LEFT)
         {
             targetX -= 1;
             if (targetX < 0)
@@ -102,7 +103,7 @@ void MainScene::tick(u16 keys) {
                 targetX = TILES_WIDE - 1;
             }
         }
-        else if ((keys & RIGHT_ARROW) == RIGHT_ARROW)
+        else if ((keys & KEY_RIGHT) == KEY_RIGHT)
         {
             targetX = (targetX + 1) % TILES_WIDE;
         }
