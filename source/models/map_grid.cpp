@@ -1,3 +1,8 @@
+#include <string>
+#include <vector>
+
+#include "ai/monster_ai.h"
+#include "models/entity.h"
 #include "models/tile_type.h"
 #include "models/map_grid.h"
 
@@ -40,7 +45,39 @@ MapGrid::MapGrid(int width, int height)
 
 void MapGrid::moveMonsters()
 {
+    for (int i = 0; i < _monsters.size(); i++)
+    {
+        auto monster = _monsters.at(i);
+        auto move = MonsterAI::moveRandomly(_data, monster);
+        auto targetX = monster._tileX;
+        auto targetY = monster._tileY;
 
+        if (move.compare(std::string("x")) == 0)
+        {
+            targetX++;
+        }
+        else if (move.compare(std::string("-x")) == 0)
+        {
+            targetX--;
+        }
+        else if (move.compare(std::string("y")) == 0)
+        {
+            targetY++;
+        }
+        else if (move.compare(std::string("-y")) == 0)
+        {
+            targetY--;
+        }
+
+        if (targetX >= 0 && targetX < _width && targetY >= 0 && targetY < _height && targetX != monster._tileX && targetY != monster._tileY)
+        {
+            // TODO: poison-dropping monster ... ? :thinking:
+            set(monster._tileX, monster._tileY, TileType::Empty);
+            set(targetX, targetY, monster._type);
+            monster._tileX = targetX;
+            monster._tileY = targetY;
+        }
+    }
 }
 
 void MapGrid::set(int x, int y, TileType data)

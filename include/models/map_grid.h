@@ -2,8 +2,8 @@
 #define MAP_GRID_H
 
 #include <vector>
-#include "models/tile_type.h"
 #include "models/entity.h"
+#include "models/tile_type.h"
 
 class MapGrid
 {
