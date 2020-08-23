@@ -30,7 +30,17 @@ MapGrid::MapGrid(int width, int height)
         set(_width - 1, y, TileType::Wall);    
     }
 
+    for (int i = 0; i < _monsters.size(); i++)
+    {
+        auto monster = _monsters.at(i);
+        set(monster._tileY, monster._tileY, monster._type);
+    }
     set(2, 2, TileType::TriEye);
+}
+
+void MapGrid::moveMonsters()
+{
+
 }
 
 void MapGrid::set(int x, int y, TileType data)

@@ -101,6 +101,11 @@ std::unique_ptr<Sprite> MainScene::makeMonsterAt(TileType monsterType, int x, in
     return monster;
 }
 
+void MainScene::onPlayerMoved()
+{
+    currentMap->moveMonsters();
+}
+
 void MainScene::tick(u16 keys) {
     if (keys == 0)
     {
@@ -148,6 +153,7 @@ void MainScene::tick(u16 keys) {
             playerY = targetY;
             justMoved = true;
             TextStream::instance().setText(std::string("moved!"), 3, 3);
+            onPlayerMoved();
         }
     }
 }
