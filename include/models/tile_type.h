@@ -5,7 +5,10 @@ enum class TileType
 {
     Empty,
     Player,
-    Wall
+    Wall,
+
+    // World 1 enemies
+    TriEye
 };
 
 #endif

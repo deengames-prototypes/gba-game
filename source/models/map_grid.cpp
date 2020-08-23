@@ -29,6 +29,8 @@ MapGrid::MapGrid(int width, int height)
         set(0, y, TileType::Wall);    
         set(_width - 1, y, TileType::Wall);    
     }
+
+    set(2, 2, TileType::TriEye);
 }
 
 void MapGrid::set(int x, int y, TileType data)

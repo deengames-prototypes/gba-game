@@ -19,10 +19,15 @@ std::vector<Sprite *> MainScene::sprites() {
     std::vector<Sprite *> toReturn;
     
     toReturn.push_back(player.get());
-    toReturn.push_back(iceWall.get());
+
     for (int i = 0; i < walls.size(); i++)
     {
         toReturn.push_back(walls.at(i).get());
+    }
+
+    for (int i = 0; i < monsters.size(); i++)
+    {
+        toReturn.push_back(monsters.at(i).get());
     }
 
     return toReturn;
@@ -40,9 +45,6 @@ void MainScene::load() {
             .withLocation(playerX * TILE_SIZE, playerY * TILE_SIZE)
             .buildPtr();
     
-    iceWall = builder.withData(world2Tiles, sizeof(world2Tiles))
-        .withSize(SIZE_16_16).withLocation(6 * TILE_SIZE, 4 * TILE_SIZE).buildPtr();
-
     currentMap = std::unique_ptr<MapGrid>(new MapGrid(TILES_WIDE, TILES_HIGH));
 
     for (int y = 0; y < currentMap->height(); y++)
@@ -54,6 +56,10 @@ void MainScene::load() {
             {
                 walls.push_back(makeWallAt(x, y));
             }
+            else if (data == TileType::TriEye)
+            {
+                monsters.push_back(makeMonsterAt(TileType::TriEye, x, y));
+            }
         }
     }
 }
@@ -64,10 +70,35 @@ std::unique_ptr<Sprite> MainScene::makeWallAt(int x, int y)
     std::unique_ptr<Sprite> wall = builder
         .withData(world1Tiles, sizeof(world1Tiles))
         .withSize(SIZE_16_16)
+        .withAnimated(2, 3)
         .withLocation(x * TILE_SIZE, y * TILE_SIZE)
         .buildPtr();
+    
+    // Set to frame 0
+    wall->stopAnimating();
+    wall->animateToFrame(0);
 
     return wall;
+}
+
+std::unique_ptr<Sprite> MainScene::makeMonsterAt(TileType monsterType, int x, int y)
+{
+    SpriteBuilder<Sprite> builder;
+    std::unique_ptr<Sprite> monster = builder
+        .withSize(SIZE_16_16)
+        
+        // TODO: dunno how to figure these out from TileType
+        .withData(world1Tiles, sizeof(world1Tiles))
+        .withAnimated(2, 3)
+
+        .withLocation(x * TILE_SIZE, y * TILE_SIZE)
+        .buildPtr();
+    
+    // Frame 1
+    monster->stopAnimating();
+    monster->animateToFrame(1);
+
+    return monster;
 }
 
 void MainScene::tick(u16 keys) {
@@ -116,7 +147,7 @@ void MainScene::tick(u16 keys) {
             playerX = targetX;
             playerY = targetY;
             justMoved = true;
-            TextStream::instance().setText(std::string("moved!"), 5, 5);
+            TextStream::instance().setText(std::string("moved!"), 3, 3);
         }
     }
 }
