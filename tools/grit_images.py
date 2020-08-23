@@ -7,7 +7,7 @@ import shutil
 GRIT = "grit.exe" if sys.platform == "win32" else "grit"
 IMAGES_DIR = os.path.join(os.getcwd(), 'images')
 PALETTE = os.path.join(IMAGES_DIR, "palette.png")
-OUTPUT_DIR = os.path.join(os.getcwd(), 'source', 'images')
+OUTPUT_DIR = os.path.join(os.getcwd(), 'include', 'images')
 TMP_DIR = os.path.join(os.getcwd(), 'tmp')
 
 

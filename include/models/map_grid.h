@@ -1,7 +1,7 @@
 #ifndef MAP_GRID
 #define MAP_GRID
 
-#include "tile_type.h"
+#include "models/tile_type.h"
 
 class MapGrid
 {

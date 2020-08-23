@@ -7,7 +7,7 @@ import shutil
 RAW2GBA = "raw2gba.exe" if sys.platform == "win32" else "raw2gba"
 RAW2GBA = os.path.join(os.getcwd(), "tools", RAW2GBA)
 AUDIO_DIR = os.path.join(os.getcwd(), 'audio')
-OUTPUT_DIR = os.path.join(os.getcwd(), 'source', 'audio')
+OUTPUT_DIR = os.path.join(os.getcwd(), 'include', 'audio')
 
 
 def convert_audio(audio_dir, output_dir):

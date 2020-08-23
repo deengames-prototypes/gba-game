@@ -1,5 +1,5 @@
-#include "tile_type.h"
-#include "map_grid.h"
+#include "models/tile_type.h"
+#include "models/map_grid.h"
 
 MapGrid::MapGrid(int width, int height)
 {
