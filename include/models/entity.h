@@ -6,9 +6,9 @@
 
 class Entity : public Sprite
 {
+    using Sprite::Sprite;
+
     public:
-        Entity(const Entity& other) : Sprite(other) {}
-        Entity(const void *imageData, int imageSize, int x, int y, SpriteSize size) : Sprite(imageData, imageSize, x, y, size) {}
         int _tileX;
         int _tileY;
         TileType _type;
