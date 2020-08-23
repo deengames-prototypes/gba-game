@@ -44,9 +44,9 @@ void MainScene::load() {
 
     currentMap = std::unique_ptr<MapGrid>(new MapGrid(TILES_WIDE, TILES_HIGH));
 
-    for (int y = 0; y < currentMap->_height; y++)
+    for (int y = 0; y < currentMap->height(); y++)
     {
-        for (int x = 0; x < currentMap->_width; x++)
+        for (int x = 0; x < currentMap->width(); x++)
         {
             TileType data = currentMap->get(x, y);
             if (data == TileType::Wall)

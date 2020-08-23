@@ -5,16 +5,19 @@
 
 class MapGrid
 {
-    public:
-        MapGrid(int width, int height);
-        // TODO: size should be read-only 
+    private:
+        TileType* _data; // 1D array
+
         int _width;
         int _height;
+    
+    public:
+        MapGrid(int width, int height);
+        int width() { return _width; }
+        int height() { return _height; }
 
         void set(int x, int y, TileType data);
         TileType get(int x, int y);
-    private:
-        TileType* _data; // 1D array
 };
 
 #endif
