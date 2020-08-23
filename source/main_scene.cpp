@@ -8,6 +8,7 @@
 #include "images/player.h"
 #include "images/palette.h"
 
+#include "models/entity.h"
 #include "models/map_grid.h"
 #include "main_scene.h"
 
@@ -37,7 +38,7 @@ void MainScene::load() {
     foregroundPalette = std::unique_ptr<ForegroundPaletteManager>(new ForegroundPaletteManager(palettePal, sizeof(palettePal)));
     backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager());
 
-    SpriteBuilder<Sprite> builder;
+    SpriteBuilder<Entity> builder;
 
     player = builder
             .withData(playerTiles, sizeof(playerTiles))
@@ -64,10 +65,10 @@ void MainScene::load() {
     }
 }
 
-std::unique_ptr<Sprite> MainScene::makeWallAt(int x, int y)
+std::unique_ptr<Entity> MainScene::makeWallAt(int x, int y)
 {
-    SpriteBuilder<Sprite> builder;
-    std::unique_ptr<Sprite> wall = builder
+    SpriteBuilder<Entity> builder;
+    std::unique_ptr<Entity> wall = builder
         .withData(world1Tiles, sizeof(world1Tiles))
         .withSize(SIZE_16_16)
         .withAnimated(2, 3)
@@ -81,10 +82,10 @@ std::unique_ptr<Sprite> MainScene::makeWallAt(int x, int y)
     return wall;
 }
 
-std::unique_ptr<Sprite> MainScene::makeMonsterAt(TileType monsterType, int x, int y)
+std::unique_ptr<Entity> MainScene::makeMonsterAt(TileType monsterType, int x, int y)
 {
-    SpriteBuilder<Sprite> builder;
-    std::unique_ptr<Sprite> monster = builder
+    SpriteBuilder<Entity> builder;
+    std::unique_ptr<Entity> monster = builder
         .withSize(SIZE_16_16)
         
         // TODO: dunno how to figure these out from TileType

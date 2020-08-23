@@ -2,12 +2,14 @@
 #define GBA_GAME_MAIN_SCENE_H
 
 #include <libgba-sprite-engine/scene.h>
+
 #include "models/map_grid.h"
+#include "models/entity.h"
 
 class MainScene : public Scene {
 private:
-    std::unique_ptr<Sprite> makeWallAt(int x, int y);
-    std::unique_ptr<Sprite> makeMonsterAt(TileType monster, int x, int y);
+    std::unique_ptr<Entity> makeWallAt(int x, int y);
+    std::unique_ptr<Entity> makeMonsterAt(TileType monster, int x, int y);
 
     const int TILE_SIZE = 16;
     // TODO: move calculations somewhere for width/height/etc.
@@ -17,9 +19,9 @@ private:
     // TODO: extract out a class/lambda something like justPressed(key, lambda)
     bool justMoved = false;
 
-    std::unique_ptr<Sprite> player;
-    std::vector<std::unique_ptr<Sprite>> walls;
-    std::vector<std::unique_ptr<Sprite>> monsters;
+    std::unique_ptr<Entity> player;
+    std::vector<std::unique_ptr<Entity>> walls;
+    std::vector<std::unique_ptr<Entity>> monsters;
     std::unique_ptr<MapGrid> currentMap;
 
     // TODO: move this into a "model" class. With C++ tests?
