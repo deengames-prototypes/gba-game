@@ -114,7 +114,7 @@ void MainScene::tick(u16 keys) {
 
         if (canMove)
         {
-            player->moveTo(targetX * TILE_SIZE, targetY * TILE_SIZE);
+            player->moveTo(targetX, targetY);
             playerX = targetX;
             playerY = targetY;
             justMoved = true;

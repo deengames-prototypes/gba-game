@@ -8,7 +8,7 @@ std::unique_ptr<Sprite> TileData::build_sprite(int x, int y, TileType type) {
     SpriteBuilder<Sprite> builder;
 
     auto entity = builder
-        .withData(data.imageData, sizeof(data.imageData))
+        .withData(data.imageData, data.imageSize)
         .withSize(SIZE_16_16)
         .withAnimated(data.numFrames, 3)
         .withLocation(x * TILE_SIZE, y * TILE_SIZE)
