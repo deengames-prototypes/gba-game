@@ -4,14 +4,22 @@
 #include <libgba-sprite-engine/sprites/sprite.h>
 #include "models/tile_type.h"
 
-class Entity : public Sprite
+class Entity
 {
-    using Sprite::Sprite;
-
+    protected:
+        int x;
+        int y;
+        TileType type;
+        std::shared_ptr<Sprite> sprite;
     public:
-        int _tileX;
-        int _tileY;
-        TileType _type;
+        Entity(int x, int y, TileType type);
+
+        void moveTo(int x, int y);
+
+        int getX() { return x; }
+        int getY() { return y; }
+        TileType getType() { return type; }
+        std::shared_ptr<Sprite> getSprite() { return sprite; }
 };
 
 

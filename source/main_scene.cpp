@@ -3,9 +3,6 @@
 #include <libgba-sprite-engine/gba/tonc_memdef.h>
 
 // Images
-#include "images/world1.h"
-#include "images/world2.h"
-#include "images/player.h"
 #include "images/palette.h"
 
 #include "models/entity.h"
@@ -20,16 +17,16 @@ std::vector<Background *> MainScene::backgrounds() {
 std::vector<Sprite *> MainScene::sprites() {
     std::vector<Sprite *> toReturn;
     
-    toReturn.push_back(player.get());
+    toReturn.push_back(player->getSprite().get());
 
     for (int i = 0; i < walls.size(); i++)
     {
-        toReturn.push_back(walls.at(i).get());
+        toReturn.push_back(walls.at(i)->getSprite().get());
     }
 
     for (int i = 0; i < monsters.size(); i++)
     {
-        toReturn.push_back(monsters.at(i).get());
+        toReturn.push_back(monsters.at(i)->getSprite().get());
     }
 
     return toReturn;
@@ -39,13 +36,7 @@ void MainScene::load() {
     foregroundPalette = std::unique_ptr<ForegroundPaletteManager>(new ForegroundPaletteManager(palettePal, sizeof(palettePal)));
     backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager());
 
-    SpriteBuilder<Entity> builder;
-
-    player = builder
-            .withData(playerTiles, sizeof(playerTiles))
-            .withSize(SIZE_16_16)
-            .withLocation(playerX * TILE_SIZE, playerY * TILE_SIZE)
-            .buildPtr();
+    player = std::unique_ptr<Entity>(new Entity(playerX, playerY, TileType::Player));
     
     currentMap = std::unique_ptr<MapGrid>(new MapGrid(TILES_WIDE, TILES_HIGH));
 
@@ -68,39 +59,12 @@ void MainScene::load() {
 
 std::unique_ptr<Entity> MainScene::makeWallAt(int x, int y)
 {
-    SpriteBuilder<Entity> builder;
-    std::unique_ptr<Entity> wall = builder
-        .withData(world1Tiles, sizeof(world1Tiles))
-        .withSize(SIZE_16_16)
-        .withAnimated(2, 3)
-        .withLocation(x * TILE_SIZE, y * TILE_SIZE)
-        .buildPtr();
-    
-    // Set to frame 0
-    wall->stopAnimating();
-    wall->animateToFrame(0);
-
-    return wall;
+    return std::unique_ptr<Entity>(new Entity(x, y, TileType::Wall));
 }
 
 std::unique_ptr<Entity> MainScene::makeMonsterAt(TileType monsterType, int x, int y)
 {
-    SpriteBuilder<Entity> builder;
-    std::unique_ptr<Entity> monster = builder
-        .withSize(SIZE_16_16)
-        
-        // TODO: dunno how to figure these out from TileType
-        .withData(world1Tiles, sizeof(world1Tiles))
-        .withAnimated(2, 3)
-
-        .withLocation(x * TILE_SIZE, y * TILE_SIZE)
-        .buildPtr();
-    
-    // Frame 1
-    monster->stopAnimating();
-    monster->animateToFrame(1);
-
-    return monster;
+    return std::unique_ptr<Entity>(new Entity(x, y, monsterType));
 }
 
 void MainScene::onPlayerMoved()

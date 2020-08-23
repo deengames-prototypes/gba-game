@@ -38,7 +38,7 @@ MapGrid::MapGrid(int width, int height)
     for (int i = 0; i < _monsters.size(); i++)
     {
         auto monster = _monsters.at(i);
-        set(monster._tileY, monster._tileY, monster._type);
+        set(monster.getX(), monster.getY(), monster.getType());
     }
     set(2, 2, TileType::TriEye);
 }
@@ -49,8 +49,8 @@ void MapGrid::moveMonsters()
     {
         auto monster = _monsters.at(i);
         auto move = MonsterAI::moveRandomly(_data, monster);
-        auto targetX = monster._tileX;
-        auto targetY = monster._tileY;
+        auto targetX = monster.getX();
+        auto targetY = monster.getY();
 
         if (move.compare(std::string("x")) == 0)
         {
@@ -69,13 +69,12 @@ void MapGrid::moveMonsters()
             targetY--;
         }
 
-        if (targetX >= 0 && targetX < _width && targetY >= 0 && targetY < _height && targetX != monster._tileX && targetY != monster._tileY)
+        if (targetX >= 0 && targetX < _width && targetY >= 0 && targetY < _height && targetX != monster.getX() && targetY != monster.getY())
         {
             // TODO: poison-dropping monster ... ? :thinking:
-            set(monster._tileX, monster._tileY, TileType::Empty);
-            set(targetX, targetY, monster._type);
-            monster._tileX = targetX;
-            monster._tileY = targetY;
+            set(monster.getX(), monster.getY(), TileType::Empty);
+            set(targetX, targetY, monster.getType());
+            monster.moveTo(targetX, targetY);
         }
     }
 }
