@@ -5,9 +5,7 @@
 
 class Entity : public Sprite
 {
-    public:
-    Entity(const Entity& other) : Sprite(other) {}
-    Entity(const void *imageData, int imageSize, int x, int y, SpriteSize size) : Sprite(imageData, imageSize, x, y, size) {}
+    using Sprite::Sprite;
 };
 
 
