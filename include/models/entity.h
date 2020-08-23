@@ -1,15 +1,19 @@
-#ifndef ENTITY_H
-#define ENTITY_H
+#ifndef GBA_GAME_ENTITY_H
+#define GBA_GAME_ENTITY_H
 
+#include <libgba-sprite-engine/sprites/sprite.h>
 #include "models/tile_type.h"
 
-class Entity
+class Entity : public Sprite
 {
     public:
-        Entity(TileType type, int tileX, int tileY);
+        Entity(const Entity& other) : Sprite(other) {}
+        Entity(const void *imageData, int imageSize, int x, int y, SpriteSize size) : Sprite(imageData, imageSize, x, y, size) {}
         int _tileX;
         int _tileY;
         TileType _type;
 };
 
-#endif
+
+
+#endif // GBA_GAME_ENTITY_H
