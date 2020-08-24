@@ -19,9 +19,6 @@ private:
     std::vector<std::unique_ptr<Entity>> monsters;
     std::unique_ptr<MapGrid> currentMap;
 
-    // TODO: move this into a "model" class. With C++ tests?
-    int playerX = 4;
-    int playerY = 3;
 public:
     std::vector<Sprite *> sprites() override;
     std::vector<Background *> backgrounds() override;

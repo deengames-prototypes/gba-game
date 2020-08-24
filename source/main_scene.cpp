@@ -36,7 +36,7 @@ void MainScene::load() {
     foregroundPalette = std::unique_ptr<ForegroundPaletteManager>(new ForegroundPaletteManager(palettePal, sizeof(palettePal)));
     backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager());
 
-    player = std::unique_ptr<Entity>(new Entity(playerX, playerY, TileType::Player));
+    player = std::unique_ptr<Entity>(new Entity(START_POS_X, START_POS_Y, TileType::Player));
     
     currentMap = std::unique_ptr<MapGrid>(new MapGrid(TILES_WIDE, TILES_HIGH));
 
@@ -75,8 +75,8 @@ void MainScene::tick(u16 keys) {
         return;
     }
 
-    int targetX = playerX;
-    int targetY = playerY;
+    int targetX = player->getTileX();
+    int targetY = player->getTileY();
 
     if (!justMoved)
     {
@@ -102,8 +102,6 @@ void MainScene::tick(u16 keys) {
         if (canMove)
         {
             player->moveTo(targetX, targetY);
-            playerX = targetX;
-            playerY = targetY;
             justMoved = true;
             TextStream::instance().setText(std::string("moved!"), 3, 3);
             onPlayerMoved();
