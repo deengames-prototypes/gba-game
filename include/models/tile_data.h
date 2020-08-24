@@ -19,17 +19,11 @@ class TileData
             this->frameIndex = frameIndex;
             this->numFrames = numFrames;
         }
-        static std::unique_ptr<Sprite> build_sprite(int x, int y, TileType type);
+        static std::unique_ptr<Sprite> buildSprite(int x, int y, TileType type);
         const unsigned int* imageData;
         int imageSize;
         int frameIndex;
         int numFrames;
-};
-
-const std::map<TileType, TileData> tileDataMap = {
-    { TileType::Player, TileData(playerTiles, sizeof(playerTiles), 0, 1) },
-    { TileType::Wall, TileData(world1Tiles, sizeof(world1Tiles), 0, 2) },
-    { TileType::TriEye, TileData(world1Tiles, sizeof(world1Tiles), 1, 2) }
 };
 
 #endif // GBA_GAME_TILE_DATA_H

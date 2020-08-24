@@ -6,7 +6,7 @@ Entity::Entity(int tileX, int tileY, TileType type) {
     this->tileX = tileX;
     this->tileY = tileY;
     this->type = type;
-    this->sprite = TileData::build_sprite(tileX, tileY, type);
+    this->sprite = TileData::buildSprite(tileX, tileY, type);
 }
 
 void Entity::moveTo(int tileX, int tileY) {

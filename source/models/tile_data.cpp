@@ -3,8 +3,26 @@
 #include "models/tile_data.h"
 #include "consts.h"
 
-std::unique_ptr<Sprite> TileData::build_sprite(int x, int y, TileType type) {
-    TileData data = tileDataMap.at(type);
+
+static TileData getTileData(TileType type) {
+    switch (type)
+    {
+    case TileType::Player:
+        return TileData(playerTiles, sizeof(playerTiles), 0, 1);
+
+    case TileType::Wall:
+        return TileData(world1Tiles, sizeof(world1Tiles), 0, 2);
+    
+    case TileType::TriEye:
+        return TileData(world1Tiles, sizeof(world1Tiles), 1, 2);
+    
+    default:
+        break;
+    }
+};
+
+std::unique_ptr<Sprite> TileData::buildSprite(int x, int y, TileType type) {
+    TileData data = getTileData(type);
     SpriteBuilder<Sprite> builder;
 
     auto entity = builder
