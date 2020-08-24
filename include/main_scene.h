@@ -13,10 +13,11 @@ private:
 
     // TODO: extract out a class/lambda something like justPressed(key, lambda)
     bool justMoved = false;
+    bool isGameOver = false;
 
     std::unique_ptr<Entity> player;
     std::vector<std::unique_ptr<Entity>> walls;
-    std::vector<std::unique_ptr<Entity>> monsters;
+    std::vector<std::shared_ptr<Entity>> monsters;
     std::unique_ptr<MapGrid> currentMap;
 
 public:

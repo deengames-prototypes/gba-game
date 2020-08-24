@@ -4,6 +4,7 @@
 #include <libgba-sprite-engine/sprites/sprite.h>
 #include "models/tile_type.h"
 
+// Not really a model, more like an MV (sprite + data)
 class Entity
 {
     protected:

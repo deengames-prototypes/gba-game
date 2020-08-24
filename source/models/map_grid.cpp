@@ -35,46 +35,41 @@ MapGrid::MapGrid(int width, int height)
         set(_width - 1, y, TileType::Wall);    
     }
 
-    for (int i = 0; i < _monsters.size(); i++)
-    {
-        auto monster = _monsters.at(i);
-        set(monster.getTileX(), monster.getTileY(), monster.getType());
-    }
-    set(2, 2, TileType::TriEye);
+    set(6, 5, TileType::TriEye);
 }
 
-void MapGrid::moveMonsters()
+void MapGrid::moveMonster(std::shared_ptr<Entity> ptr)
 {
-    for (int i = 0; i < _monsters.size(); i++)
+    auto monster = ptr.get();
+    auto move = MonsterAI::moveRandomly(_data, ptr);
+    auto targetX = monster->getTileX();
+    auto targetY = monster->getTileY();
+
+    if (move.compare(std::string("x")) == 0)
     {
-        auto monster = _monsters.at(i);
-        auto move = MonsterAI::moveRandomly(_data, monster);
-        auto targetX = monster.getTileX();
-        auto targetY = monster.getTileY();
+        targetX++;
+    }
+    else if (move.compare(std::string("-x")) == 0)
+    {
+        targetX--;
+    }
+    else if (move.compare(std::string("y")) == 0)
+    {
+        targetY++;
+    }
+    else if (move.compare(std::string("-y")) == 0)
+    {
+        targetY--;
+    }
 
-        if (move.compare(std::string("x")) == 0)
+    if (targetX >= 0 && targetX < _width && targetY >= 0 && targetY < _height)
+    {
+        TileType targetTile = get(targetX, targetY);
+        if (targetTile == TileType::Empty || targetTile == TileType::Player)
         {
-            targetX++;
-        }
-        else if (move.compare(std::string("-x")) == 0)
-        {
-            targetX--;
-        }
-        else if (move.compare(std::string("y")) == 0)
-        {
-            targetY++;
-        }
-        else if (move.compare(std::string("-y")) == 0)
-        {
-            targetY--;
-        }
-
-        if (targetX >= 0 && targetX < _width && targetY >= 0 && targetY < _height && targetX != monster.getTileX() && targetY != monster.getTileY())
-        {
-            // TODO: poison-dropping monster ... ? :thinking:
-            set(monster.getTileX(), monster.getTileY(), TileType::Empty);
-            set(targetX, targetY, monster.getType());
-            monster.moveTo(targetX, targetY);
+            set(monster->getTileX(), monster->getTileY(), TileType::Empty);
+            set(targetX, targetY, monster->getType());
+            monster->moveTo(targetX, targetY);
         }
     }
 }

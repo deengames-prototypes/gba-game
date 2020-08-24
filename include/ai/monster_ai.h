@@ -10,7 +10,7 @@
 class MonsterAI
 {
     public:
-        static std::string moveRandomly(TileType* mapData, Entity monster);
+        static std::string moveRandomly(TileType* mapData, std::shared_ptr<Entity> monster);
 };
 
 #endif

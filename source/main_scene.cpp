@@ -15,10 +15,13 @@ std::vector<Background *> MainScene::backgrounds() {
 }
 
 std::vector<Sprite *> MainScene::sprites() {
-    std::vector<Sprite *> toReturn;
+    std::vector<Sprite*> toReturn;
     
-    toReturn.push_back(player->getSprite().get());
-
+    if (!isGameOver)
+    {
+        toReturn.push_back(player->getSprite().get());
+    }
+    
     for (int i = 0; i < walls.size(); i++)
     {
         toReturn.push_back(walls.at(i)->getSprite().get());
@@ -64,10 +67,25 @@ std::unique_ptr<Entity> MainScene::makeEntityAt(int x, int y, TileType type)
 
 void MainScene::onPlayerMoved()
 {
-    currentMap->moveMonsters();
+    for (int i = 0; i < monsters.size(); i++)
+    {
+        auto m = monsters.at(i);
+        currentMap->moveMonster(m);
+
+        if (m->getTileX() == player->getTileX() && m->getTileY() == player->getTileY())
+        {
+            isGameOver = true;
+        }
+    }
 }
 
-void MainScene::tick(u16 keys) {
+void MainScene::tick(u16 keys)
+{
+    if (isGameOver)
+    {
+        return;
+    }
+
     if (keys == 0)
     {
         // Nothing pressed ...

@@ -5,7 +5,7 @@
 #include "models/entity.h"
 #include "models/tile_type.h"
 
-std::string MonsterAI::moveRandomly(TileType* data, Entity monster)
+std::string MonsterAI::moveRandomly(TileType* data, std::shared_ptr<Entity> monster)
 {
     // If we "randomly" move into a wall or something, meh.
     // TODO: could check if target tile is empty; also, could check what's

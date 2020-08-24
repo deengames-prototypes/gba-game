@@ -12,8 +12,6 @@ class MapGrid
 
         int _width;
         int _height;
-
-        std::vector<Entity> _monsters;
     
     public:
         MapGrid(int width, int height);
@@ -23,7 +21,7 @@ class MapGrid
         void set(int x, int y, TileType data);
         TileType get(int x, int y);
 
-        void moveMonsters();
+        void moveMonster(std::shared_ptr<Entity> monster);
         bool isEmpty(int x, int y);
 };
 
