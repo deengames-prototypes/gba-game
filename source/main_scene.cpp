@@ -47,24 +47,19 @@ void MainScene::load() {
             TileType data = currentMap->get(x, y);
             if (data == TileType::Wall)
             {
-                walls.push_back(makeWallAt(x, y));
+                walls.push_back(makeEntityAt(x, y, TileType::Wall));
             }
             else if (data == TileType::TriEye)
             {
-                monsters.push_back(makeMonsterAt(TileType::TriEye, x, y));
+                monsters.push_back(makeEntityAt(x, y, TileType::TriEye));
             }
         }
     }
 }
 
-std::unique_ptr<Entity> MainScene::makeWallAt(int x, int y)
+std::unique_ptr<Entity> MainScene::makeEntityAt(int x, int y, TileType type)
 {
-    return std::unique_ptr<Entity>(new Entity(x, y, TileType::Wall));
-}
-
-std::unique_ptr<Entity> MainScene::makeMonsterAt(TileType monsterType, int x, int y)
-{
-    return std::unique_ptr<Entity>(new Entity(x, y, monsterType));
+    return std::unique_ptr<Entity>(new Entity(x, y, type));
 }
 
 void MainScene::onPlayerMoved()

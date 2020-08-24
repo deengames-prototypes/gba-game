@@ -8,8 +8,7 @@
 
 class MainScene : public Scene {
 private:
-    std::unique_ptr<Entity> makeWallAt(int x, int y);
-    std::unique_ptr<Entity> makeMonsterAt(TileType monster, int x, int y);
+    std::unique_ptr<Entity> makeEntityAt(int x, int y, TileType monster);
     void onPlayerMoved();
 
     // TODO: move calculations somewhere for width/height/etc.
