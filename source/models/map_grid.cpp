@@ -88,3 +88,8 @@ TileType MapGrid::get(int x, int y)
 {
     return _data[y * _width + x];
 }
+
+bool MapGrid::isEmpty(int x, int y)
+{
+    return get(x, y) == TileType::Empty && x >= 0 && y >= 0 && x <= _width && y <= _height;
+}

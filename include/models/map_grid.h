@@ -24,6 +24,7 @@ class MapGrid
         TileType get(int x, int y);
 
         void moveMonsters();
+        bool isEmpty(int x, int y);
 };
 
 #endif

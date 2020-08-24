@@ -11,10 +11,6 @@ private:
     std::unique_ptr<Entity> makeEntityAt(int x, int y, TileType monster);
     void onPlayerMoved();
 
-    // TODO: move calculations somewhere for width/height/etc.
-    const int TILES_WIDE = 15;
-    const int TILES_HIGH = 10;
-
     // TODO: extract out a class/lambda something like justPressed(key, lambda)
     bool justMoved = false;
 

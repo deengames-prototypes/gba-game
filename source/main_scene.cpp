@@ -83,29 +83,21 @@ void MainScene::tick(u16 keys) {
         if ((keys & KEY_UP) == KEY_UP)
         {
             targetY -= 1;
-            if (targetY < 0)
-            {
-                targetY = TILES_HIGH - 1;
-            }
         }
         else if ((keys & KEY_DOWN) == KEY_DOWN)
         {
-            targetY = (targetY + 1) % TILES_HIGH;
+            targetY += 1;
         }
         else if ((keys & KEY_LEFT) == KEY_LEFT)
         {
             targetX -= 1;
-            if (targetX < 0)
-            {
-                targetX = TILES_WIDE - 1;
-            }
         }
         else if ((keys & KEY_RIGHT) == KEY_RIGHT)
         {
-            targetX = (targetX + 1) % TILES_WIDE;
+            targetX += 1;
         }
 
-        bool canMove = currentMap->get(targetX, targetY) == TileType::Empty;
+        bool canMove = currentMap->isEmpty(targetX, targetY);
 
         if (canMove)
         {
