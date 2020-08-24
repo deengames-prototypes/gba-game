@@ -7,6 +7,7 @@ Entity::Entity(int tileX, int tileY, TileType type) {
     this->tileY = tileY;
     this->type = type;
     this->sprite = TileData::buildSprite(tileX, tileY, type);
+    this->command = Command::getTileCommand(type);
 }
 
 void Entity::moveTo(int tileX, int tileY) {

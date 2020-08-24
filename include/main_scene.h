@@ -9,7 +9,6 @@
 class MainScene : public Scene {
 private:
     std::unique_ptr<Entity> makeEntityAt(int x, int y, TileType monster);
-    void onPlayerMoved();
 
     // TODO: extract out a class/lambda something like justPressed(key, lambda)
     bool justMoved = false;
@@ -24,6 +23,8 @@ public:
     std::vector<Background *> backgrounds() override;
 
     MainScene(std::shared_ptr<GBAEngine> engine) : Scene(engine) {}
+
+    void onPlayerMoved();
 
     void load() override;
     void tick(u16 keys) override;
