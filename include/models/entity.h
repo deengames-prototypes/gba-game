@@ -7,17 +7,17 @@
 class Entity
 {
     protected:
-        int x;
-        int y;
+        int tileX;
+        int tileY;
         TileType type;
         std::shared_ptr<Sprite> sprite;
     public:
-        Entity(int x, int y, TileType type);
+        Entity(int tileX, int tileY, TileType type);
 
-        void moveTo(int x, int y);
+        void moveTo(int tileX, int tileY);
 
-        int getX() { return x; }
-        int getY() { return y; }
+        int getTileX() { return tileX; }
+        int getTileY() { return tileY; }
         TileType getType() { return type; }
         std::shared_ptr<Sprite> getSprite() { return sprite; }
 };
