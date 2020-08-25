@@ -22,14 +22,9 @@ std::vector<Sprite *> MainScene::sprites() {
         toReturn.push_back(player->getSprite().get());
     }
     
-    for (int i = 0; i < walls.size(); i++)
+    for (int i = 0; i < environment.size(); i++)
     {
-        toReturn.push_back(walls.at(i)->getSprite().get());
-    }
-
-    for (int i = 0; i < dirt.size(); i++)
-    {
-        toReturn.push_back(dirt.at(i)->getSprite().get());
+        toReturn.push_back(environment.at(i)->getSprite().get());
     }
 
     for (int i = 0; i < monsters.size(); i++)
@@ -55,11 +50,11 @@ void MainScene::load() {
             TileType data = currentMap->get(x, y);
             if (data == TileType::Wall)
             {
-                walls.push_back(makeEntityAt(x, y, TileType::Wall));
+                environment.push_back(makeEntityAt(x, y, TileType::Wall));
             }
             else if (data == TileType::Dirt)
             {
-                dirt.push_back(makeEntityAt(x, y, TileType::Dirt));
+                environment.push_back(makeEntityAt(x, y, TileType::Dirt));
             }
             else if (data == TileType::TriEye)
             {
@@ -140,12 +135,14 @@ void MainScene::removeDirtAt(int tx, int ty)
 {
     currentMap->set(tx, ty, TileType::Empty);
 
-    for (auto i = 0; i < dirt.size(); i++)
+    for (auto it = environment.begin(); it != environment.end(); it++)
     {
-        Entity* d = dirt.at(i).get();
-        if (d->getTileX() == tx && d->getTileY() == ty)
+        auto e = *it;
+        if (e->getType() == TileType::Dirt && e->getTileX() == tx && e->getTileY() == ty)
         {
-            dirt.erase(dirt.begin() + i);
+            TextStream::instance().setText(std::string(std::string("ate dirt at ") + std::to_string(e->getTileX()) + std::string(", ") + std::to_string(e->getTileY())), 3, 3);
+            environment.erase(it);
+            it--;
             return;
         }
     }

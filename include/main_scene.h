@@ -17,8 +17,7 @@ private:
     bool isGameOver = false;
 
     std::unique_ptr<Entity> player;
-    std::vector<std::unique_ptr<Entity>> walls;
-    std::vector<std::unique_ptr<Entity>> dirt;
+    std::vector<std::shared_ptr<Entity>> environment;
     std::vector<std::shared_ptr<Entity>> monsters;
     std::unique_ptr<MapGrid> currentMap;
 
