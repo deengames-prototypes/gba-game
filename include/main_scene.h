@@ -2,6 +2,7 @@
 #define GBA_GAME_MAIN_SCENE_H
 
 #include <libgba-sprite-engine/scene.h>
+#include <libgba-sprite-engine/gba_engine.h>
 
 #include "models/map_grid.h"
 #include "models/entity.h"

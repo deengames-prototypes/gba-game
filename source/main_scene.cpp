@@ -142,6 +142,7 @@ void MainScene::removeDirtAt(int tx, int ty)
         {
             TextStream::instance().setText(std::string(std::string("ate dirt at ") + std::to_string(e->getTileX()) + std::string(", ") + std::to_string(e->getTileY())), 3, 3);
             environment.erase(it);
+            engine->updateSpritesInScene();
             it--;
             return;
         }
