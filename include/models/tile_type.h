@@ -6,6 +6,7 @@ enum class TileType
     Empty,
     Player,
     Wall,
+    Dirt,
 
     // World 1 enemies
     TriEye

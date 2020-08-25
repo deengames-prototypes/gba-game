@@ -35,7 +35,12 @@ MapGrid::MapGrid(int width, int height)
         set(_width - 1, y, TileType::Wall);    
     }
 
-    set(6, 5, TileType::TriEye);
+    set(6, 6, TileType::TriEye);
+    
+    set(5, 6, TileType::Dirt);
+    set(7, 6, TileType::Dirt);
+    set(6, 5, TileType::Dirt);
+    set(6, 7, TileType::Dirt);
 }
 
 void MapGrid::moveMonster(std::shared_ptr<Entity> ptr)

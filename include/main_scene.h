@@ -10,6 +10,7 @@ class MainScene : public Scene {
 private:
     std::unique_ptr<Entity> makeEntityAt(int x, int y, TileType monster);
     void onPlayerMoved();
+    void removeDirtAt(int tx, int ty);
 
     // TODO: extract out a class/lambda something like justPressed(key, lambda)
     bool justMoved = false;
@@ -17,6 +18,7 @@ private:
 
     std::unique_ptr<Entity> player;
     std::vector<std::unique_ptr<Entity>> walls;
+    std::vector<std::unique_ptr<Entity>> dirt;
     std::vector<std::shared_ptr<Entity>> monsters;
     std::unique_ptr<MapGrid> currentMap;
 

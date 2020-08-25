@@ -27,6 +27,11 @@ std::vector<Sprite *> MainScene::sprites() {
         toReturn.push_back(walls.at(i)->getSprite().get());
     }
 
+    for (int i = 0; i < dirt.size(); i++)
+    {
+        toReturn.push_back(dirt.at(i)->getSprite().get());
+    }
+
     for (int i = 0; i < monsters.size(); i++)
     {
         toReturn.push_back(monsters.at(i)->getSprite().get());
@@ -51,6 +56,10 @@ void MainScene::load() {
             if (data == TileType::Wall)
             {
                 walls.push_back(makeEntityAt(x, y, TileType::Wall));
+            }
+            else if (data == TileType::Dirt)
+            {
+                dirt.push_back(makeEntityAt(x, y, TileType::Dirt));
             }
             else if (data == TileType::TriEye)
             {
@@ -119,10 +128,25 @@ void MainScene::tick(u16 keys)
 
         if (canMove)
         {
+            removeDirtAt(player->getTileX(), player->getTileY());
             player->moveTo(targetX, targetY);
             justMoved = true;
-            TextStream::instance().setText(std::string("moved!"), 3, 3);
             onPlayerMoved();
+        }
+    }
+}
+
+void MainScene::removeDirtAt(int tx, int ty)
+{
+    currentMap->set(tx, ty, TileType::Empty);
+
+    for (auto i = 0; i < dirt.size(); i++)
+    {
+        Entity* d = dirt.at(i).get();
+        if (d->getTileX() == tx && d->getTileY() == ty)
+        {
+            dirt.erase(dirt.begin() + i);
+            return;
         }
     }
 }
