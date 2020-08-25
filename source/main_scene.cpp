@@ -124,7 +124,7 @@ void MainScene::tick(u16 keys)
             targetX += 1;
         }
 
-        bool canMove = currentMap->isEmpty(targetX, targetY);
+        bool canMove = currentMap->isWalkable(targetX, targetY);
 
         if (canMove)
         {

@@ -22,7 +22,7 @@ class MapGrid
         TileType get(int x, int y);
 
         void moveMonster(std::shared_ptr<Entity> monster);
-        bool isEmpty(int x, int y);
+        bool isWalkable(int x, int y);
 };
 
 #endif
